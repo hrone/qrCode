@@ -10,7 +10,8 @@
 ## 配置参数
 ### wxml
 > `<canvas style="width: 686rpx;height: 686rpx;background:#f1f1f1;" canvas-id="qrcCanvas"/>`
-`<input value='{{qrcStr}}'  bindblur="onQrcStrBlur" type="text" maxlength="255"   
+
+> `<input value='{{qrcStr}}'  bindblur="onQrcStrBlur" type="text" maxlength="255"   
           />`
 ### js
 > 
@@ -21,7 +22,7 @@ data:{
  }
  
  //适配不同屏幕大小的canvas  
-   setCanvasSize:function(){  
+   setCanvasSize(){  
      var size={};  
      try {  
          var res = wx.getSystemInfoSync();  
@@ -34,17 +35,17 @@ data:{
          // Do something when catch error  
          console.log("获取设备信息失败"+e);  
        }   
-     return size;  
+     return size;  //返回大小
    } ,  
    
-   createQrCode:function(str,canvasId,cavW,cavH){  
+   createQrCode(str,canvasId,cavW,cavH){  
        //调用插件中的draw方法，绘制二维码图片  
        qrCode.api.draw(str,canvasId,cavW,cavH);  
      
     },  
      
    //获取input输入的值  
-   onQrcStrBlur: function(e) {  
+   onQrcStrBlur(e) {  
        this.setData({qrcStr: e.detail.value});  
    },  
      
